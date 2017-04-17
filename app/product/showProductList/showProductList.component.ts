@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Product } from '../product';
-import { ProductDataService } from '../../service/product-data.service';
+import { ProductDataService } from '../../service/product-data-db.service';
 @Component({
     selector: 'showProductList',
     templateUrl: 'app/product/showProductList/showProductList.component.html',
@@ -28,5 +28,5 @@ export class showProductListComponent {
             "\nRating : " + product.rating.toFixed(1));
     }
 
- 
+
 }

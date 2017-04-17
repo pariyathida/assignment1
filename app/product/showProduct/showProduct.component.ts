@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Product } from '../product';
-import { ProductDataService } from '../../service/product-data.service';
+import { ProductDataService } from '../../service/product-data-db.service';
 @Component({
     selector: 'showProducts',
     templateUrl: 'app/product/showProduct/showProduct.component.html',

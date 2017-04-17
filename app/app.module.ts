@@ -4,18 +4,12 @@ import {AppComponent} from './app.component';
 import {addProductsComponent} from './product/addProduct/addProduct.component';
 import {showProductsComponent} from './product/showProduct/showProduct.component';
 import {showProductListComponent} from './product/showProductList/showProductList.component';
-import {ProductDataService} from './service/product-data.service';
+import {ProductDataService} from './service/product-data-db.service';
 import {TimeComponent} from './time/time.component';
 import {FormsModule} from '@angular/forms';
 import {MenuComponent} from './menu/menu.component';
-import {Routes,RouterModule} from '@angular/router';
+import {ProductRoutingModule} from "./product/product-routing";
 
-const appRoutes: Routes = [
-	{path:'view', component:showProductsComponent},
-	{path:'add',  component:addProductsComponent},
-	{path:'list', component:showProductListComponent},
-	{path:'', redirectTo:'/add',pathMatch:'full'}
-];
 
 @NgModule({
  declarations: [ AppComponent,
@@ -24,7 +18,7 @@ const appRoutes: Routes = [
 				showProductListComponent,
 				TimeComponent,
 				MenuComponent],
- imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
+ imports: [BrowserModule, FormsModule, ProductRoutingModule],
  bootstrap: [AppComponent],
  providers: [ProductDataService]
 })

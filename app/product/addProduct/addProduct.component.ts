@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Product } from '../product';
-import { ProductDataService } from '../../service/product-data.service';
+import { ProductDataService } from '../../service/product-data-db.service';
 @Component({
     selector: 'addProducts',
     templateUrl: 'app/product/addProduct/addProduct.component.html',
@@ -23,6 +23,6 @@ export class addProductsComponent {
     }
 
      saveFileName(image){
-        this.product.pictures= image.target.files[0].name;  
+        this.product.pictures= image.target.files[0].name;
     }
 }
