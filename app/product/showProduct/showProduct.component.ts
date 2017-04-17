@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
-import { Product } from '../product';
-import { ProductDataService } from '../../service/product-data-db.service';
+import {Component} from '@angular/core';
+import {Product} from '../product';
+import {ProductDataServerService} from '../../service/product-data-server.service';
 @Component({
-    selector: 'showProducts',
-    templateUrl: 'app/product/showProduct/showProduct.component.html',
-    styleUrls: ['app/product/showProduct/showProduct.component.css']
+  selector: 'showProducts',
+  templateUrl: 'app/product/showProduct/showProduct.component.html',
+  styleUrls: ['app/product/showProduct/showProduct.component.css']
 })
 export class showProductsComponent {
-    products : Product[];
-    constructor(private productDataService:ProductDataService){}
-    ngOnInit(){
-        this.products = this.productDataService.getProductsData();
-    }
+  products: Product[];
+
+  constructor(private productDataService: ProductDataServerService) {
+  }
+
+  ngOnInit() {
+    this.productDataService.getProductsData().subscribe((res) => this.products = res);
+  }
 }

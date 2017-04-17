@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Product} from '../product/product';
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
-import {Observable} from "rxjs/Rx";
+import {Observable} from 'rxjs/Rx';
 
 
 @Injectable()
@@ -9,20 +9,20 @@ export class ProductDataServerService {
   constructor(private http: Http) {
   }
 
-  getStudentsData() {
-    let productArray: Product[];
+  getProductsData() {
+    // let productArray: Product[];
     return this.http.get('http://localhost:8080/product')
       .map(res => res.json());
 
   }
 
   getProduct(id: number) {
-    let product: Product;
+    // let product: Product;
     return this.http.get('http://localhost:8080/product/' + id)
       .map((res: Response) => {
         if (res) {
           if (res.status === 200) {
-            return res.json()
+            return res.json();
           }
           if (res.status === 204) {
             return null;
@@ -60,12 +60,12 @@ export class ProductDataServerService {
         let body = JSON.stringify(product);
         return this.http.post('http://localhost:8080/product', body, options)
           .map(res => {
-            return res.json()
+            return res.json();
           })
           .catch((error: any) => {
-            return Observable.throw(new Error(error.status))
-          })
-      })
+            return Observable.throw(new Error(error.status));
+          });
+      });
 
 
 

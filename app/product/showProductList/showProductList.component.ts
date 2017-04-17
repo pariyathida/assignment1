@@ -1,32 +1,35 @@
-import { Component } from '@angular/core';
-import { Product } from '../product';
-import { ProductDataService } from '../../service/product-data-db.service';
+import {Component} from '@angular/core';
+import {Product} from '../product';
+import {ProductDataServerService} from '../../service/product-data-server.service';
 @Component({
-    selector: 'showProductList',
-    templateUrl: 'app/product/showProductList/showProductList.component.html',
-    styleUrls: ['app/product/showProductList/showProductList.component.css']
+  selector: 'showProductList',
+  templateUrl: 'app/product/showProductList/showProductList.component.html',
+  styleUrls: ['app/product/showProductList/showProductList.component.css']
 })
 export class showProductListComponent {
-    products : Product[]
-    constructor(private productDataService:ProductDataService){}
-    ngOnInit(){
-        this.products = this.productDataService.getProductsData();
-    }
+  products: Product[]
 
-    showDescription(product){
-        if(product.description.length<=50){
-            return product.description;
-        }else{
-            return product.description.substring(0,47)+"...";
-        }
-    }
+  constructor(private productDataService: ProductDataServerService) {
+  }
 
-    alertDetail(product){
-        alert("Name : " + product.name + "\nDescription : " +
-            product.description + "\nPictures : " + product.pictures +
-            "\nPrice : " + product.price + "\nAmount : " + product.amount +
-            "\nRating : " + product.rating.toFixed(1));
+  ngOnInit() {
+    this.productDataService.getProductsData().subscribe((res) => this.products = res);
+  }
+
+  showDescription(product) {
+    if (product.description.length <= 50) {
+      return product.description;
+    } else {
+      return product.description.substring(0, 47) + '...';
     }
+  }
+
+  alertDetail(product) {
+    alert('Name : ' + product.name + '\nDescription : ' +
+      product.description + '\nPictures : ' + product.pictures +
+      '\nPrice : ' + product.price + '\nAmount : ' + product.amount +
+      '\nRating : ' + product.rating.toFixed(1));
+  }
 
 
 }

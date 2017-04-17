@@ -8,19 +8,21 @@ import {ProductDataService} from './service/product-data-db.service';
 import {TimeComponent} from './time/time.component';
 import {FormsModule} from '@angular/forms';
 import {MenuComponent} from './menu/menu.component';
-import {ProductRoutingModule} from "./product/product-routing";
+import {ProductRoutingModule} from './product/product-routing';
+import {ProductDataServerService} from './service/product-data-server.service';
+import {HttpModule} from '@angular/http';
 
 
 @NgModule({
- declarations: [ AppComponent,
-				addProductsComponent,
-				showProductsComponent,
-				showProductListComponent,
-				TimeComponent,
-				MenuComponent],
- imports: [BrowserModule, FormsModule, ProductRoutingModule],
+ declarations: [AppComponent,
+   addProductsComponent,
+   showProductsComponent,
+   showProductListComponent,
+   TimeComponent,
+   MenuComponent],
+ imports: [BrowserModule, FormsModule, HttpModule, ProductRoutingModule],
  bootstrap: [AppComponent],
- providers: [ProductDataService]
+ providers: [ProductDataService, ProductDataServerService]
 })
 export class AppModule {
 }
