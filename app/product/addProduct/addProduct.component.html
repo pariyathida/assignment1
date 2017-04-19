@@ -1,7 +1,6 @@
 <form class="col-md-4">
   <div class="form-group">
-    <label for="productN
-    ame">Product Name</label>
+    <label for="productName">Product Name</label>
     <input [(ngModel)]="product.name"  [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="productName" placeholder="Product Name">
   </div>
   <div class="form-group">
@@ -10,7 +9,7 @@
   </div>
   <div class="form-group">
     <label for="picture">Picture</label>
-    <input (change)="saveFileName($event)" type="file" id="picture">
+    <input #fileInput  type="file" id="picture">
   </div>
   <div class="form-group">
     <label for="price">Price</label>

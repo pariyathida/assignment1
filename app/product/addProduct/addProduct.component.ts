@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {Product} from '../product';
 import {ProductDataServerService} from '../../service/product-data-server.service';
+import {Router} from "@angular/router";
 @Component({
   selector: 'addProducts',
   templateUrl: 'app/product/addProduct/addProduct.component.html',
@@ -11,21 +12,23 @@ export class addProductsComponent {
   product: Product = new Product();
   file: null;
 
-  constructor(private productDataService: ProductDataServerService) {
+  @ViewChild('fileInput') inputEl: ElementRef;
+
+  constructor(private productDataService: ProductDataServerService, private router: Router) {
   }
 
   ngOnInit() {
     this.productDataService.getProductsData().subscribe((res) => this.products = res);
   }
-
   addProduct() {
-    /*this.products.push(this.product);*/
-    this.productDataService.addProduct(this.product, this.file).subscribe((res) => {
+    let inputEl: HTMLInputElement = this.inputEl.nativeElement;
+    this.productDataService.addProduct(this.product, inputEl.files.item(0)).subscribe((res) => {
       console.log(res)
-      alert('Name : ' + this.product.name + '\nDescription : ' +
-        this.product.description + '\nPictures : ' + this.product.pictures +
-        '\nPrice : ' + this.product.price + '\nAmount : ' + this.product.amount +
-        '\nRating : ' + this.product.rating.toFixed(1));
+      if (res != null) {
+        this.router.navigate(['/list']);
+      }else {
+        alert('Error in adding the student');
+      }
     });
   }
 
@@ -36,4 +39,5 @@ export class addProductsComponent {
   saveFile(image) {
     this.file = image.target.files[0];
   }
+
 }
