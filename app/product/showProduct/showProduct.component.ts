@@ -15,4 +15,9 @@ export class showProductsComponent {
   ngOnInit() {
     this.productDataService.getProductsData().subscribe((res) => this.products = res);
   }
+
+  serverPath(){
+    return this.productDataService.getServerPath()+'image/';
+  }
+
 }

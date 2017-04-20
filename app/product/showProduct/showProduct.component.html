@@ -12,7 +12,7 @@
             <p>Rating : {{product?.rating | number : '1.1-1' }}</p>
             <p>Pictures : </p>
                <div *ngIf="product?.pictures">
-                  <img class="img-responsive" [src]="'http://localhost:8080/product/image/'+product?.pictures" [alt] = "product?.pictures">
+                  <img class="img-responsive" [src]="serverPath()+product?.pictures" [alt] = "product?.pictures">
                </div>
 
     </div>
